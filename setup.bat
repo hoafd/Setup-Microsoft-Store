@@ -35,11 +35,12 @@ powershell -NoProfile -Command "$folders = @('DesktopAppInstaller_Dependencies\%
 
 echo.
 echo [3/4] Dang cai dat Desktop App Installer (WinGet)...
-powershell -NoProfile -Command "if (Test-Path 'Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle') { Write-Host '  -> Cai dat DesktopAppInstaller...'; Add-AppxPackage -Path 'Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle' } else { Write-Host '  [!] Khong tim thay file DesktopAppInstaller msixbundle' -ForegroundColor Yellow }"
+powershell -NoProfile -Command "if (Test-Path 'Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle') { Write-Host '  -> Cai dat DesktopAppInstaller...'; try { Add-AppxPackage -Path 'Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle' -ErrorAction Stop } catch { if ($_.Exception.Message -match '0x80073D06') { Write-Host '  [i] WinGet da co san phien ban moi hon tren he thong.' -ForegroundColor Yellow } else { Write-Host ('  [!] ' + $_.Exception.Message) -ForegroundColor Red } } } else { Write-Host '  [!] Khong tim thay file DesktopAppInstaller msixbundle' -ForegroundColor Yellow }"
 
 echo.
 echo [4/4] Dang cai dat Microsoft Store...
-powershell -NoProfile -Command "$store = Get-ChildItem -Filter *.msixbundle | Where-Object { $_.Name -notlike '*DesktopAppInstaller*' } | Select-Object -First 1; if ($store) { Write-Host '  -> Cai dat:' $store.Name; Add-AppxPackage -Path $store.FullName } else { Write-Host '  [!] Khong tim thay goi Microsoft Store msixbundle' -ForegroundColor Yellow }"
+powershell -NoProfile -Command "$store = Get-ChildItem -Filter *.msixbundle | Where-Object { $_.Name -notlike '*DesktopAppInstaller*' } | Select-Object -First 1; if ($store) { Write-Host '  -> Cai dat:' $store.Name; try { Add-AppxPackage -Path $store.FullName -ErrorAction Stop } catch { if ($_.Exception.Message -match '0x80073D06') { Write-Host '  [i] Microsoft Store da co san phien ban moi hon tren he thong (khong can cai de).' -ForegroundColor Yellow } else { Write-Host ('  [!] ' + $_.Exception.Message) -ForegroundColor Red } } } else { Write-Host '  [!] Khong tim thay goi Microsoft Store msixbundle' -ForegroundColor Yellow }"
+
 
 echo.
 echo ======================================================================

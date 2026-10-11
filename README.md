@@ -4,8 +4,9 @@ Bộ công cụ cài đặt **Microsoft Store** và trình quản lý gói **Win
 
 > [!TIP]
 > 📦 **TẢI VỀ BỘ CÀI ĐẶT ĐẦY ĐỦ (OFFLINE PACKAGE)**:  
-> Do các gói cài đặt UWP/MSIX có dung lượng lớn, toàn bộ bộ cài offline đã được đóng gói sẵn và phát hành tại:  
-> 👉 **[GitHub Releases: Microsoft Store](https://github.com/hoafd/Setup-Microsoft-Store/releases/tag/Microsoft-Store)**
+> Toàn bộ bộ cài offline đã được đóng gói sẵn trong file **`Setup.Microsoft.Store.zip`**.  
+> 📥 **[TẢI XUỐNG TRỰC TIẾP: Setup.Microsoft.Store.zip](https://github.com/hoafd/Setup-Microsoft-Store/releases/download/Microsoft-Store/Setup.Microsoft.Store.zip)**  
+> *(Xem danh sách phát hành tại [GitHub Releases: Microsoft Store](https://github.com/hoafd/Setup-Microsoft-Store/releases/tag/Microsoft-Store))*
 
 > [!NOTE]
 > Gói **`Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle`** và thư mục phụ thuộc **`DesktopAppInstaller_Dependencies/`** (bao gồm `x64`, `x86`, `arm64`) được trích xuất trực tiếp từ bản phát hành chính thức **Windows Package Manager v1.29.380** ([microsoft/winget-cli](https://github.com/microsoft/winget-cli/releases/tag/v1.29.380)).
@@ -46,7 +47,7 @@ Setup.Microsoft.Store/
 
 ## 🚀 Hướng Dẫn Cài Đặt Tự Động (Khuyên Dùng)
 
-1. **Tải bộ cài**: Vào mục [Releases (Microsoft Store)](https://github.com/hoafd/Setup-Microsoft-Store/releases/tag/Microsoft-Store) và tải file `.zip` về máy.
+1. **Tải bộ cài**: Tải trực tiếp file **[Setup.Microsoft.Store.zip](https://github.com/hoafd/Setup-Microsoft-Store/releases/download/Microsoft-Store/Setup.Microsoft.Store.zip)** (hoặc xem tại [Releases: Microsoft Store](https://github.com/hoafd/Setup-Microsoft-Store/releases/tag/Microsoft-Store)).
 2. **Giải nén**: Giải nén toàn bộ file `.zip` ra một thư mục.
 3. Nhấp đúp hoặc chuột phải vào file **`setup.bat`** -> chọn **Run as administrator**.
 4. Bấm **Yes** khi hộp thoại xác nhận quyền quản trị viên (UAC) xuất hiện.
