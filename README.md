@@ -1,69 +1,97 @@
-# 🛒 Microsoft Store Installer
+# Bộ Cài Đặt Microsoft Store & WinGet Offline Cho Windows IoT / LTSC
 
-[English](#-english) | [Tiếng Việt](#-tieng-viet)
+Bộ công cụ cài đặt **Microsoft Store** và trình quản lý gói **WinGet (Desktop App Installer)** dạng **Offline 100%**, chuyên dụng cho các phiên bản **Windows 10 / Windows 11 IoT Enterprise LTSC** hoặc các bản Windows bị lược bỏ Store.
 
----
+> [!TIP]
+> 📦 **TẢI VỀ BỘ CÀI ĐẶT ĐẦY ĐỦ (OFFLINE PACKAGE)**:  
+> Do các gói cài đặt UWP/MSIX có dung lượng lớn, toàn bộ bộ cài offline đã được đóng gói sẵn và phát hành tại:  
+> 👉 **[GitHub Releases: Microsoft Store](https://github.com/hoafd/Setup-Microsoft-Store/releases/tag/Microsoft-Store)**
 
-## 🇺🇸 English
-
-A lightweight and automated tool designed to restore or install the **Microsoft Store** and its necessary dependencies on Windows 10/11. This is particularly useful for Windows editions that don't come with the Store by default, such as **IoT Enterprise**, **LTSC**, or if the Store was accidentally removed.
-
-### 🚀 Download & Release
-You can download the latest pre-packaged version from the official releases page:
-**🔗 [Download Microsoft Store Package (Release: Microsoft-Store)](https://github.com/hoafd/Setup-Microsoft-Store/releases/latest)**
-
-### 🛠️ Features
-- **Automated Setup**: One-click installation via `setup.bat`.
-- **Dependency Management**: Includes all required libraries (`VCLibs`, `UI.Xaml`).
-- **Manual Mode**: Includes manual commands for advanced users or troubleshooting.
-
-### 📖 How to Install
-1. **Download** the source code or the release package.
-2. **Extract** all files into a single folder.
-3. Right-click on **`setup.bat`** and select **Run as Administrator**.
-4. Wait for the process to complete.
-5. If the Store doesn't open automatically, please **Restart your computer**.
+> [!NOTE]
+> Gói **`Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle`** và thư mục phụ thuộc **`DesktopAppInstaller_Dependencies/`** (bao gồm `x64`, `x86`, `arm64`) được trích xuất trực tiếp từ bản phát hành chính thức **Windows Package Manager v1.29.380** ([microsoft/winget-cli](https://github.com/microsoft/winget-cli/releases/tag/v1.29.380)).
 
 ---
 
-## 🇻🇳 Tiếng Việt
+## 🌟 Tính Năng Nổi Bật
 
-Công cụ nhỏ gọn và tự động giúp khôi phục hoặc cài đặt **Microsoft Store** cùng các thành phần phụ thuộc cần thiết trên Windows 10/11. Bộ công cụ này cực kỳ hữu ích cho các phiên bản Windows không có sẵn Store như **IoT Enterprise**, **LTSC**, hoặc khi Store vô tình bị xóa.
-
-### 🚀 Tải về & Release
-Bạn có thể tải về phiên bản đóng gói sẵn mới nhất tại trang release chính thức:
-**🔗 [Tải về Microsoft Store Package (Release: Microsoft-Store)](https://github.com/hoafd/Setup-Microsoft-Store/releases/latest)**
-
-### 🛠️ Tính năng
-- **Cài đặt tự động**: Cài đặt chỉ với một cú nhấp chuột qua file `setup.bat`.
-- **Quản lý phụ thuộc**: Bao gồm đầy đủ các thư viện cần thiết (`VCLibs`, `UI.Xaml`).
-- **Chế độ thủ công**: Cung cấp các lệnh PowerShell nếu bạn muốn tự tay cài đặt.
-
-### 📖 Hướng dẫn cài đặt
-1. **Tải về** mã nguồn hoặc gói release.
-2. **Giải nén** tất cả các tệp vào cùng một thư mục.
-3. Nhấn chuột phải vào file **`setup.bat`** và chọn **Run as Administrator**.
-4. Đợi quá trình cài đặt hoàn tất.
-5. Nếu Store không tự mở, vui lòng **Khởi động lại máy tính**.
+- **Hoàn toàn Offline**: Không cần kết nối Internet, không phụ thuộc vào PowerShell Gallery hay NuGet Provider.
+- **Tự động nhận diện kiến trúc phần cứng**: Hỗ trợ tự động các kiến trúc `x64` (64-bit), `x86` (32-bit), và `arm64`.
+- **Đầy đủ thư viện phụ thuộc (Dependencies)**: Đã tích hợp sẵn `WindowsAppRuntime 1.8`, `VCLibs 140 UWPDesktop`, `VCLibs 140`, và `Microsoft.UI.Xaml 2.8`.
+- **Tự động nâng quyền Administrator (UAC Self-Elevation)**: Chỉ cần nhấp đúp file là script tự gọi quyền Admin.
+- **Báo cáo kết quả trực quan**: Kiểm tra và hiển thị trực tiếp trạng thái cài đặt cùng phiên bản chi tiết.
 
 ---
 
-## 📦 What's Included? / Thành phần bộ cài
+## 📁 Cấu Trúc Thư Mục
 
-| File | Description (EN) | Mô tả (VI) |
-| :--- | :--- | :--- |
-| `setup.bat` | Main installation script (Run as Admin). | File cài đặt tự động (Chạy bằng quyền Admin). |
-| `HDSD.txt` | Manual instructions in Vietnamese. | Hướng dẫn sử dụng thủ công bằng tiếng Việt. |
-| `*.Msixbundle` | Official Microsoft Store package. | Bộ cài Microsoft Store chính thức. |
-| `*.Appx` | Supplemental dependencies. | Các tệp phụ thuộc đi kèm. |
+```text
+Setup.Microsoft.Store/
+├── DesktopAppInstaller_Dependencies/          # Các gói thư viện bắt buộc của WinGet
+│   ├── arm64/                                 # Gói dành cho kiến trúc ARM64
+│   ├── x64/                                   # Gói dành cho kiến trúc 64-bit Intel/AMD
+│   │   ├── Microsoft.VCLibs.140.00.UWPDesktop_14.0.33728.0_x64.appx
+│   │   ├── Microsoft.VCLibs.140.00_14.0.33519.0_x64.appx
+│   │   └── Microsoft.WindowsAppRuntime.1.8_8000.616.304.0_x64.appx
+│   └── x86/                                   # Gói dành cho kiến trúc 32-bit
+├── Microsoft.DesktopAppInstaller_...msixbundle# Gói cài đặt WinGet (Desktop App Installer)
+├── Microsoft.WindowsStore_...Msixbundle       # Gói cài đặt Microsoft Store chính
+├── Microsoft.UI.Xaml.2.8_...Appx              # Giao diện UI Xaml 2.8 (x64, x86)
+├── Microsoft.VCLibs.140.00_...Appx            # Thư viện Visual C++ Runtime (x64, x86)
+├── setup.bat                                  # Script cài đặt tự động (Khuyên dùng)
+├── HDSD.txt                                   # Hướng dẫn lệnh chạy thủ công
+└── README.md                                  # Tài liệu hướng dẫn này
+```
 
 ---
 
-## ⚠️ Troubleshooting / Xử lý sự cố
+## 🚀 Hướng Dẫn Cài Đặt Tự Động (Khuyên Dùng)
 
-- **Red Text / Chữ đỏ**: Thường do thành phần đó đã có sẵn hoặc phiên bản không khớp. Nếu Store vẫn hoạt động thì có thể bỏ qua.
-- **Permissions / Quyền hạn**: Đảm bảo bạn chạy script bằng quyền **Administrator**.
+1. **Tải bộ cài**: Vào mục [Releases (Microsoft Store)](https://github.com/hoafd/Setup-Microsoft-Store/releases/tag/Microsoft-Store) và tải file `.zip` về máy.
+2. **Giải nén**: Giải nén toàn bộ file `.zip` ra một thư mục.
+3. Nhấp đúp hoặc chuột phải vào file **`setup.bat`** -> chọn **Run as administrator**.
+4. Bấm **Yes** khi hộp thoại xác nhận quyền quản trị viên (UAC) xuất hiện.
+5. Chờ trình cài đặt tự động thực hiện 4 bước:
+   - `[1/4]` Cài đặt các gói phụ thuộc cơ bản (`VCLibs`, `UI.Xaml`).
+   - `[2/4]` Cài đặt các gói phụ thuộc WinGet (`WindowsAppRuntime 1.8`, `UWPDesktop`).
+   - `[3/4]` Cài đặt WinGet (`Desktop App Installer`).
+   - `[4/4]` Cài đặt `Microsoft Store`.
+6. Khi hoàn tất, màn hình sẽ hiển thị kết quả:
+   - `[+] Microsoft Store: DA CAI DAT`
+   - `[+] WinGet (DesktopAppInstaller): DA CAI DAT`
+   - Microsoft Store sẽ tự động mở lên.
 
 ---
 
-*Made with ❤️ to help you restore your Windows experience.*
+## 🛠️ Hướng Dẫn Cài Đặt Thủ Công (Qua PowerShell)
+
+Nếu bạn muốn tự chạy lệnh từng bước, hãy mở **PowerShell với quyền Administrator** tại thư mục này và dán lần lượt các lệnh sau (ví dụ cho máy 64-bit `x64`):
+
+```powershell
+# 1. Cài đặt các gói phụ thuộc cơ bản
+Add-AppxPackage -Path "Microsoft.VCLibs.140.00_14.0.33519.0_x64__8wekyb3d8bbwe.appx"
+Add-AppxPackage -Path "Microsoft.VCLibs.140.00_14.0.33519.0_x86__8wekyb3d8bbwe.appx"
+Add-AppxPackage -Path "Microsoft.UI.Xaml.2.8_8.2501.31001.0_x64__8wekyb3d8bbwe.appx"
+Add-AppxPackage -Path "Microsoft.UI.Xaml.2.8_8.2501.31001.0_x86__8wekyb3d8bbwe.appx"
+
+# 2. Cài đặt các gói phụ thuộc WinGet
+Add-AppxPackage -Path "DesktopAppInstaller_Dependencies\x64\Microsoft.VCLibs.140.00.UWPDesktop_14.0.33728.0_x64.appx"
+Add-AppxPackage -Path "DesktopAppInstaller_Dependencies\x64\Microsoft.WindowsAppRuntime.1.8_8000.616.304.0_x64.appx"
+
+# 3. Cài đặt WinGet
+Add-AppxPackage -Path "Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle"
+
+# 4. Cài đặt Microsoft Store
+Add-AppxPackage -Path "Microsoft.WindowsStore_22602.1401.4.0_neutral_~_8wekyb3d8bbwe.msixbundle"
+
+# 5. Khởi chạy Store & Kiểm tra phiên bản WinGet
+start ms-windows-store:
+winget --version
+```
+
+---
+
+## 💡 Lưu Ý Khi Mang Sang Máy Khác
+
+- **Luôn giải nén trước khi chạy:** Không chạy trực tiếp `setup.bat` từ bên trong phần mềm giải nén (WinRAR / 7-Zip).
+- **Giữ nguyên cấu trúc thư mục:** Đảm bảo thư mục con `DesktopAppInstaller_Dependencies` nằm cùng cấp với file `setup.bat`.
+- **Tương thích:** Hoạt động tốt trên Windows 10 IoT Enterprise LTSC (21H2, 22H2), Windows 11 IoT Enterprise LTSC, và các phiên bản Windows 10/11 tương đương.
